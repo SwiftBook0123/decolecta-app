@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de la Consulta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #d9ead3;
+            color: #000;
+            font-weight: bold;
+        }
+        .match {
+            background-color: #c8e6c9; /* Verde claro para coincidencias */
+        }
+        .no-match {
+            background-color: #ffcdd2; /* Rojo claro para no coincidencias */
+        }
+        .copy-btn {
+            background-color: #2196F3;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .copy-btn:hover {
+            background-color: #1976D2;
+        }
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #2196F3;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Resultados de la Consulta</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre Ingresado</th>
+                <th>Apellido Paterno Ingresado</th>
+                <th>Apellido Materno Ingresado</th>
+                <th>Nombre API</th>
+                <th>Apellido Paterno API</th>
+                <th>Apellido Materno API</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultado in resultados %}
+            <tr>
+                <td class="{{ 'match' if resultado.nombre_ingresado == resultado.nombre_api else 'no-match' }}">
+                    {{ resultado.nombre_ingresado }}
+                    <button class="copy-btn" onclick="copyText('{{ resultado.nombre_ingresado }}')">Copiar</button>
+                </td>
+                <td class="{{ 'match' if resultado.apellido_paterno_ingresado == resultado.apellido_paterno_api else 'no-match' }}">
+                    {{ resultado.apellido_paterno_ingresado }}
+                    <button class="copy-btn" onclick="copyText('{{ resultado.apellido_paterno_ingresado }}')">Copiar</button>
+                </td>
+                <td class="{{ 'match' if resultado.apellido_materno_ingresado == resultado.apellido_materno_api else 'no-match' }}">
+                    {{ resultado.apellido_materno_ingresado }}
+                    <button class="copy-btn" onclick="copyText('{{ resultado.apellido_materno_ingresado }}')">Copiar</button>
+                </td>
+                <td>{{ resultado.nombre_api }}</td>
+                <td>{{ resultado.apellido_paterno_api }}</td>
+                <td>{{ resultado.apellido_materno_api }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/" class="back-btn">Volver a consultar</a>
+</div>
+
+<script>
+    function copyText(text) {
+        var tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = text;
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Texto copiado: ' + text);
+    }
+</script>
+
+</body>
+</html>

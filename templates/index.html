@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta DNI SUNAT 🎄</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f5f0;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+            font-family: 'Brush Script MT', cursive;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #2ecc71;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Consulta de DNI SUNAT 🎅</h1>
+    <form action="/consultar" method="POST">
+        <label for="nombres">Nombres completos (TAB entre campos)</label>
+        <textarea id="nombres" name="nombres" placeholder="Ejemplo:\nANA MARIA	ARONI	ZEVALLOS" required></textarea>
+        <small class="note">Ingresa nombre, apellido paterno y apellido materno separados por TAB.</small>
+
+        <label for="dnis">DNIs</label>
+        <textarea id="dnis" name="dnis" placeholder="Ejemplo:\n12345678" required></textarea>
+        <small class="note">Cada DNI debe estar en una línea diferente.</small>
+
+        <button type="submit">Consultar DNIs 🎄</button>
+    </form>
+</div>
+</body>
+</html>
